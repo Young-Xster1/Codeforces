@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+ 
+ 
+using namespace std;
+ 
+const int N = 500005;
+const int inf = 2147483647;
+const int M = 1004535809;
+ 
+int n, m, a[N], T, k;
+ 
+struct str {
+    int x, y;
+} t[N];
+ 
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    cin >> T;
+ 
+    while (T--) {
+        k = 0;
+        cin >> n >> m;
+ 
+        for (int i = 1; i <= m; ++i)
+            cin >> a[i];
+ 
+        sort(a + 1, a + 1 + m);
+ 
+        for (int i = 2; i <= m; ++i)
+            t[++k] = {a[i] - a[i - 1] - 1, 2};
+ 
+        int num_tmp = a[1] + n - a[m] - 1;
+ 
+        if (num_tmp > 0) {
+            t[++k] = {num_tmp, 2};
+        }
+ 
+        sort(t + 1, t + 1 + k, [](str a, str b) { return a.x > b.x; });
+ 
+        long long ans = 0, cnt = 0;
+ 
+        for (int i = 1; i <= k; ++i) {
+            if (t[i].x - cnt * 2 > 0) {
+                int num_tmp = max(1ll, t[i].x - cnt * 2 - 1);
+                ans += num_tmp;
+            }
+            cnt += 2;
+        }
+ 
+        cout << n - ans << "\n";
+    }
+ 
+    return 0;
+}
