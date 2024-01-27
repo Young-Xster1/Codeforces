@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+#include <ext/pb_ds/assoc_container.hpp> 
+#include <ext/pb_ds/tree_policy.hpp> 
+using namespace __gnu_pbds;
+ 
+#define endl "\n"
+#define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update> 
+#define FIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define ll long long
+#define vi vector<ll>
+#define pb push_back
+#define F first
+#define S second
+#define all(v) (v).begin(),(v).end()
+#define pii pair<ll,ll>
+#define vii vector<pii>
+#define vb  vector<bool>
+#define vvi vector<vi>
+#define vvb vector<vb>
+#define calc_fact(n) tgamma(n+1)
+#define inf LONG_LONG_MAX
+#define MOD 1000000007
+#define mod 998244353
+ 
+signed main()
+{
+    FIO;
+    
+    ll t;
+    cin>>t;
+    while(t--)
+    {
+        ll n,ans=0;
+        cin>>n;
+        vi index(2*n+1,-1);
+        for(ll i=1;i<=n;i++){
+            ll a;
+            cin>>a;
+            index[a] = i;
+        }
+        
+        for(ll sum=3;sum<2*n;sum++){
+            for(ll i=1;i*i<=sum;i++){
+                if(sum%i==0 and i*i!=sum and index[i]!=-1 and index[sum/i]!=-1 and index[i]+index[sum/i]==sum){
+                    ans++;
+                }
+            }
+        }
+        cout<<ans<<endl;
+    }
+}
