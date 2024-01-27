@@ -1,0 +1,80 @@
+//* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ///*/
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define pb push_back
+#define fast cout.tie(0), cin.tie(0), ios_base::sync_with_stdio(0)
+#define ll long long
+#define vt vector<int>
+#define matrix vector<vector<int>>
+#define ff first
+#define ss second
+#define yes cout << "YES" << '\n';
+#define no cout << "NO" << '\n';
+#define ps(x, y) fixed << setprecision(y) << x;
+#define all(x) x.begin(), x.end()
+#define sortt(x) sort(all(x))
+#define mems(a, x) memset(a, x, sizeof(a))
+#define rev(x)      reverse ( all(x) )
+#define co      cout <<
+#define inp(x) cin >> x
+#define espace cout << " "
+#define line cout << endl
+#define takevect(x) for (auto &d : x) cin >> d;
+#define rep(i, y) for (int i = 0; i < y; i++)
+//* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ///*/
+ 
+void solve() {
+    ll n, s; inp(n);
+    vector<ll> a;
+    vector<ll> b;
+    for (int i = 0; i < n; i++) {
+        cin >> s;
+        a.pb(s);
+        b.pb(s);
+    }
+    sortt(b);
+    for (int i = 1; i < n; i++) {
+        a[i] += a[i - 1];
+        b[i] += b[i - 1];
+    }
+    ll m; inp(m);
+    while (m--) {
+        int tp; ll l, r;
+        inp(tp); inp(l); inp(r);
+        if (tp == 1) {
+            if(l==1){
+                cout<<a[r-1]<<'\n';
+            }else{
+                cout<<a[r-1]-a[l-2]<<'\n';
+            }
+        } else {
+            if(l==1){
+                cout<<b[r-1]<<'\n';
+            }else{
+                cout<<b[r-1]-b[l-2]<<'\n';
+            }
+        }
+    }
+}
+ 
+    
+ 
+signed main() {
+    fast;cout<<fixed;cout<<setprecision(14);
+    #ifndef ONLINE_JUDGE
+        freopen("inp.txt", "r", stdin);
+        freopen("out.txt", "w", stdout);
+    #endif
+    // int test = 1 ;  inp ( test );
+    // while ( test -- ) 
+    solve();
+    
+ 
+    
+    
+    
+    return 0;
+}
+ 
