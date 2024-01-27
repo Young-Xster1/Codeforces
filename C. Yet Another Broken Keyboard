@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+ 
+ 
+using namespace std;
+ 
+#define pb push_back
+#define fast cout.tie(0), cin.tie(0), ios_base::sync_with_stdio(0)
+#define ll long long
+#define vt vector<int>
+#define matrix vector<vector<int>>
+#define ff first
+#define ss second
+#define yes cout << "YES" << endl;
+#define no cout << "NO" << endl;
+#define ps(x, y) fixed << setprecision(y) << x;
+#define all(x) x.begin(), x.end()
+#define sortt(x) sort(all(x))
+#define mems(a, x) memset(a, x, sizeof(a))
+#define rev(x)      reverse ( all(x) )
+#define co      cout <<
+#define inp(x) cin >> x
+#define espace cout << " "
+#define line cout << endl
+#define takevect(x) for (auto &d : x) cin >> d;
+#define rep(i, y) for (int i = 0; i < y; i++)
+bool found(vector<char> &a,char c){
+    for(int j=0;j<a.size();j++){
+        if(c==a[j]){
+            return true;
+        }
+    }
+    return false;
+}
+void solve() {
+    ll n; int k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
+    set<char> st;
+    for (int i = 0; i < k; ++i) {
+        char c;
+        cin >> c;
+        st.insert(c);
+    }
+ 
+    long long ans = 0;
+    for (int i = 0; i < n; ++i) {
+        int j = i;
+        while (j < n && st.count(s[j])) ++j;
+        int len = j - i;
+        ans += len * 1ll * (len + 1) / 2;
+        i = j;
+    }
+    cout << ans << endl;
+}
+ 
+signed main() {
+    fast;
+    #ifndef ONLINE_JUDGE
+        freopen("inp.txt", "r", stdin);
+        freopen("out.txt", "w", stdout);
+    #endif
+    // int test = 1 ;  inp ( test );
+    // while ( test -- ) 
+    solve();
+    return 0;
+}
