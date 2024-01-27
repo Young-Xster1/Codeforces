@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+ 
+ 
+using namespace std;
+ 
+#define pb push_back
+#define fast cout.tie(0), cin.tie(0), ios_base::sync_with_stdio(0)
+#define ll long long
+#define vt vector<int>
+#define matrix vector<vector<int>>
+#define ff first
+#define ss second
+#define yes cout << "YES" << endl;
+#define no cout << "NO" << endl;
+#define ps(x, y) fixed << setprecision(y) << x;
+#define all(x) x.begin(), x.end()
+#define sortt(x) sort(all(x))
+#define mems(a, x) memset(a, x, sizeof(a))
+#define rev(x)      reverse ( all(x) )
+#define co      cout <<
+#define inp(x) cin >> x
+#define espace cout << " "
+#define line cout << endl
+#define takevect(x) for (auto &d : x) cin >> d;
+#define rep(i, y) for (int i = 0; i < y; i++)
+ll fact(int n){
+    if(n==0){
+        return 1;
+    }else{
+        return n*fact(n-1);
+    }
+}
+ll gen(ll n,ll k){
+    return fact(n)/(fact(k)*fact(n-k));
+}
+void solve() {
+    string s, d;
+    cin >> s >> d;
+    double ans;
+    int cnt11 = 0, cnt12 = 0, cnt01 = 0, cnt02 = 0, n = 0;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] == '+') {
+            cnt11++;
+        } else {
+            cnt01++;
+        }
+    }
+    for (int i = 0; i < d.size(); i++) {
+        if (d[i] == '+') {
+            cnt12++;
+        } else if (d[i] == '-') {
+            cnt02++;
+        } else {
+            n++;
+        }
+    }
+    if (n == 0 && cnt12 == cnt11) {
+        ans = (double)1 / 1;
+        cout << ans << '\n';
+    } else if (n == 0 && cnt12 != cnt11) {
+        ans = (double)0 / 1;
+        cout << ans << '\n';
+    }else if(cnt12+n<cnt11 || cnt02+n<cnt01){
+        ans = (double)0 / 1;
+        cout << ans << '\n';
+    } else {
+        ans = (double)gen(n, cnt11 - cnt12) / pow(2, n);
+        cout << ans << '\n';
+    }
+}
+ 
+signed main() {
+    fast;cout<<fixed;cout<<setprecision(14);
+    #ifndef ONLINE_JUDGE
+        freopen("inp.txt", "r", stdin);
+        freopen("out.txt", "w", stdout);
+    #endif
+    // int test = 1 ;  inp ( test );
+    // while ( test -- ) 
+    solve();
+    return 0;
+}
