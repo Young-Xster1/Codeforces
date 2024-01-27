@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+ 
+ 
+using namespace std;
+ 
+#define pb push_back
+#define fast cout.tie(0), cin.tie(0), ios_base::sync_with_stdio(0)
+// #define int long long
+#define vt vector<int>
+#define matrix vector<vector<int>>
+#define ff first
+#define ss second
+#define yes cout << "YES" << endl;
+#define no cout << "NO" << endl;
+#define ps(x, y) fixed << setprecision(y) << x;
+#define all(x) x.begin(), x.end()
+#define sortt(x) sort(all(x))
+#define mems(a, x) memset(a, x, sizeof(a))
+#define rev(x)      reverse ( all(x) )
+#define co      cout <<
+#define inp(x) cin >> x
+#define espace cout << " "
+#define line cout << endl
+#define takevect(x) for (auto &d : x) cin >> d;
+#define rep(i, y) for (int i = 0; i < y; i++)
+ 
+void solve() {
+    int n; cin >> n;
+    vector<long long> count(n + 1, 0), Max(n + 1, 0);
+    for(int i = 0; i < n; ++i) {
+        int x; cin >> x;
+        if(x <= n) ++count[x];
+    }
+    for(int i = 1; i <= n; ++i) {
+        for(int j = i; j <= n; j += i) Max[j] += count[i];
+    }
+    cout << *max_element(Max.begin(),Max.end()) << "\n";
+}   
+signed main() {
+    fast;
+    #ifndef ONLINE_JUDGE
+        freopen("inp.txt", "r", stdin);
+        freopen("out.txt", "w", stdout);
+    #endif
+    int test = 1 ;  inp ( test );
+    while ( test -- ) solve();
+    return 0;
+}
