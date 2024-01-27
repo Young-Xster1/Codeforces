@@ -1,0 +1,71 @@
+//* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ///*/
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define pb push_back
+#define fast cout.tie(0), cin.tie(0), ios_base::sync_with_stdio(0)
+#define ll long long
+#define vt vector<ll>
+#define matrix vector<vector<ll>>
+#define ff first
+#define ss second
+#define yes cout << "YES" << '\n';
+#define no cout << "NO" << '\n';
+#define ps(x, y) fixed << setprecision(y) << x;
+#define all(x) x.begin(), x.end()
+#define rall(x) x.rbegin(), x.rend()
+#define sortt(x) sort(all(x))
+#define sorttr(x) sort(rall(x))
+#define mems(a, x) memset(a, x, sizeof(a))
+#define rev(x)      reverse ( all(x) )
+#define co      cout <<
+#define inp(x) cin >> x
+#define espace cout << " "
+#define ln cout << '\n'
+#define takevect(x) for (auto &d : x) cin >> d;
+#define len(s) (int)s.size()
+#define rep(i, y) for (int i = 0; i < y; i++)
+//* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ///*/
+ 
+ 
+void solve() {
+    string s;
+    inp(s);
+    int ans = 9;
+ 
+    int cnt0 = 0, cnt1 = 0;
+    for (int i= 0;i<10;i++) {
+        if(i % 2 == 0 && s[i] != '0') cnt0 ++;
+        if (i % 2 != 0 && s[i] == '1') cnt1 ++ ;
+ 
+        if (cnt0 > cnt1 + (10 - i) / 2 || cnt1 > cnt0 + (9 - i) / 2)
+            ans = min(ans, i);
+    }
+ 
+    cnt0 = 0, cnt1 = 0;
+    for (int i= 0;i<10;i++) {
+        if(i % 2 == 0 && s[i] == '1') cnt0 ++;
+        if (i % 2 != 0 && s[i] != '0') cnt1 ++ ;
+ 
+        if (cnt0 > cnt1 + (10 - i) / 2 || cnt1 > cnt0 + (9 - i) / 2)
+            ans = min(ans, i);
+    }
+ 
+    cout << ans + 1 << '\n';
+}
+ 
+ 
+    
+ 
+signed main() {
+    fast;cout<<fixed;cout<<setprecision(14);
+    #ifndef ONLINE_JUDGE
+        freopen("inp.txt", "r", stdin);
+        freopen("out.txt", "w", stdout);
+    #endif
+    int test=1 ;  inp ( test );
+    while ( test -- ) solve();
+ 
+    return 0;
+}
