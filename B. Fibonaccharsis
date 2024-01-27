@@ -1,0 +1,43 @@
+#include "bits/stdc++.h"
+using namespace std;
+#define inp(x) cin >> x
+#define co cout
+#define line cout << '\n'
+#define Take(x) for ( auto & d : x ) cin >> d ; 
+#define Show(x) for ( auto & d : x ) cout << d << " " ; 
+#define No cout << "No" << endl
+#define Yes cout << "Yes" << endl
+#define Sort(x) sort( x.begin() , x.end() ) ;
+#define RSort(x) sort( x.begin() , x.end() ) ; reverse ( x.begin() , x.end() ) ;
+ 
+    void solve() {
+    long long n, k;
+    int count = 0;
+    cin >> n >> k;
+    for (int i = 1; i <= n; i++) {
+        int s = n;
+        int f = i;
+        bool test = true;
+        for (int j = 0; j < k - 2; j++) {
+            int fx = f;
+            f = s - fx;
+            s = fx;
+            test &= f <= s;
+            test &= min(f, s) >= 0;
+            if (!test) break;
+        }
+        if (test) count++;
+    }
+    cout << count << '\n';
+}
+ 
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
+        int t;
+        cin>>t;
+        while(t--){
+            solve();
+        }
+    return 0;
+}
