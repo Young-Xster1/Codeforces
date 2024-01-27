@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+#define inp(x) cin >> x
+#define co cout
+#define line cout << '\n'
+int signe ( int n ){
+    return (( n >0)? 1 : 0 );
+}
+void solve() {
+    long long Max,Min,sum=0,i=0,j=0;
+    int n,s;
+    cin>>n;
+    vector<int> A;
+    for(int i=0;i<n;i++){
+        inp(s);
+        A.push_back(s);
+    }
+   while ( i < n )
+    {
+        int j = i ,Min = INT_MIN , Max = 0 ; 
+        while ( j < n && signe(A[i]) == signe(A[j]) ) {
+            if ( signe(A[i]) == 0 ) Min = max ( Min , A[j] ) ;
+            else Max = max ( Max , A[j] ) ;
+            ++j;
+        }
+        sum += (Min != INT_MIN ? Min : 0) + Max ; 
+        i = j ; 
+    }
+    cout<<sum<<'\n';
+}
+ 
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
+        int t;
+        cin>>t;
+        while(t--){
+            solve();
+        }
+    return 0;
+}
