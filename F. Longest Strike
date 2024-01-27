@@ -1,0 +1,91 @@
+#include <bits/stdc++.h>
+ 
+ 
+using namespace std;
+ 
+#define pb push_back
+#define fast cout.tie(0), cin.tie(0), ios_base::sync_with_stdio(0)
+// #define int long long
+#define vt vector<int>
+#define matrix vector<vector<int>>
+#define ff first
+#define ss second
+#define yes cout << "YES" << endl;
+#define no cout << "NO" << endl;
+#define ps(x, y) fixed << setprecision(y) << x;
+#define all(x) x.begin(), x.end()
+#define sortt(x) sort(all(x))
+#define mems(a, x) memset(a, x, sizeof(a))
+#define rev(x)      reverse ( all(x) )
+#define co      cout <<
+#define inp(x) cin >> x
+#define espace cout << " "
+#define line cout << endl
+#define takevect(x) for (auto &d : x) cin >> d;
+#define rep(i, y) for (int i = 0; i < y; i++)
+int repeat (vector<long long> &v ,int x,int index){
+    int count=0;
+    for(int i=index;i<v.size();i++){
+        if(v[i]!=x){
+            return count;
+        }else{
+            count++;
+        }
+    }
+}
+void solve(){
+    
+	int n, k;
+	cin >> n >> k;
+	int a[n];
+	map<int, int> map;
+	for(int i = 0; i < n; i++)
+	{
+		cin >> a[i];
+		map[a[i]]++;
+	}
+	vector<int> c;
+	for(auto x : map)
+	{
+		if(x.second >= k)
+		{
+			c.push_back(x.first);
+		}
+	}
+	if(c.size() == 0)
+	{
+		cout << -1 << endl;
+		return;
+	}
+	sort(c.begin(), c.end());
+	int mx = 0;
+	int left = c[0], right = c[0];
+	int l = c[0];
+	for(int i = 1; i < c.size(); i++)
+	{
+		if(c[i]-1 == c[i-1])
+		{
+			if(c[i]-l > mx)
+			{
+				left = l;
+				right = c[i];
+				mx = c[i]-l;
+			}
+		}
+		else
+		{
+			l = c[i];
+		}
+	}
+	cout << left << " " << right << endl;
+}
+signed main() {
+    fast;
+    #ifndef ONLINE_JUDGE
+        freopen("inp.txt", "r", stdin);
+        freopen("out.txt", "w", stdout);
+    #endif
+    int test = 1 ;  inp ( test );
+    while ( test -- ) solve();
+    return 0;
+}
